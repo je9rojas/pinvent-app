@@ -3,15 +3,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const userRoute = require("./routes/userRoute")
-const errorHandler = require("./middleWare/errorMiddleware")
+const userRoute = require("./routes/userRoute");
+const errorHandler = require("./middleWare/errorMiddleware");
+const cookieParser = require("cookie-parser");
 
-const app = express()
+const app = express();
 
 // Middlewares
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(cors());
 
 // Routes Middleware
 app.use("/api/users", userRoute);
